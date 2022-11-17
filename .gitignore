@@ -34,3 +34,5 @@ busca-fatos-web/.env.production.local
 busca-fatos-web/.vercel
 
 busca-fatos-web/Response.js
+
+node_modules/
