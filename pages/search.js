@@ -9,7 +9,7 @@ function Search({ results }) {
   return (
     <div>
       <Head>
-        <title> {router.query.term} - Google Search </title>
+        <title> {router.query.term} - Busca Fatos </title>
         <link rel="icon" href="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"/>
       </Head>
 

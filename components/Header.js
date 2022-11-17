@@ -2,7 +2,6 @@ import { MicrophoneIcon, SearchIcon, XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
-import Avatar from './Avatar';
 import HeaderOptions from './HeaderOptions';
 
 
@@ -45,7 +44,6 @@ function Header() {
           <SearchIcon onClick={(event)=>{search(event)}} className="h-6 text-blue-500 hidden sm:inline-flex cursor-pointer"/>
           <button hidden type="submit" onClick={(event)=>{search(event)}}/>
         </form>
-        <Avatar className="ml-auto" url="https://yt3.ggpht.com/yti/ANoDKi4Nc0hLimw2QNjLrjxuuNEnU5ZMi2n2PST_ugEdhw=s88-c-k-c0x00ffffff-no-rj-mo"/>
       </div>
 
       {/* Options */}
