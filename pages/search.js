@@ -29,7 +29,7 @@ export default Search
 export async function getServerSideProps(context) {
   const startIndex = context.query.start || '0';
 
-  const data = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&cx=${process.env.NEXT_PUBLIC_CONTEXT_KEY}&q=${context.query.term}&start=${startIndex}`).then(res => res.json()).catch(error => {
+  const data = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&cx=${process.env.NEXT_PUBLIC_CONTEXT_KEY}&q=${context.query.term}&start=${startIndex}&sort=date`).then(res => res.json()).catch(error => {
     console.error(error)
   });
     

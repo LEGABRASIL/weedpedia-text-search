@@ -28,9 +28,9 @@ function Header() {
       <div className="flex w-full p-6 items-center">
         <Image 
         loading="lazy"
-        src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" 
-        width={120}
-        height={40}
+        src="https://media4.giphy.com/media/h1QX6JsKb6VGsJZGuS/giphy.gif?cid=790b7611abd1d13a284e7133b44819853e7d2c9f6506755b&rid=giphy.gif&ct=s" 
+        width={140}
+        height={140}
         onClick={()=>router.push("/")}
         className="cursor-pointer"
         />
