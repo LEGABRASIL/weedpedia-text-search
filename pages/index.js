@@ -27,7 +27,7 @@ export default function Home() {
       
       <Head>
         <title> Busca Fatos BETA </title>
-        <link rel="icon" href="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"/>
+        <link rel="icon" href="https://media4.giphy.com/media/h1QX6JsKb6VGsJZGuS/giphy.gif?cid=790b7611abd1d13a284e7133b44819853e7d2c9f6506755b&rid=giphy.gif&ct=s"/>
       </Head>
 
       
@@ -35,7 +35,7 @@ export default function Home() {
         <form className="flex flex-col items-center mt-44 flex-grow w-4/5">
           <div className="flex w-full mt-5 hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full border border-gray-200 px-5 py-3 items-center sm:max-w-xl lg:max-w-2xl">
             <SearchIcon className="h-5 mr-3 text-gray-500"/>
-            <input ref={searchInputRef} type="text" className="flex-grow  focus:outline-none"/>
+            <input ref={searchInputRef} type="text" className="flex-grow focus:outline-none"/>
           </div>
           
           {/* Buttons */}

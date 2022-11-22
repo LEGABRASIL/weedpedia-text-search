@@ -10,7 +10,7 @@ function Search({ results }) {
     <div>
       <Head>
         <title> {router.query.term} - Busca Fatos </title>
-        <link rel="icon" href="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"/>
+        <link rel="icon" href="https://media4.giphy.com/media/h1QX6JsKb6VGsJZGuS/giphy.gif?cid=790b7611abd1d13a284e7133b44819853e7d2c9f6506755b&rid=giphy.gif&ct=s"/>
       </Head>
 
       {/*  Header */}
@@ -28,10 +28,19 @@ export default Search
 
 export async function getServerSideProps(context) {
   const startIndex = context.query.start || '0';
+  const encodedPath = encodeURIComponent(context.query.term);
+  let url;
 
-  const data = await fetch(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&cx=${process.env.NEXT_PUBLIC_CONTEXT_KEY}&q=${context.query.term}&start=${startIndex}&sort=date`).then(res => res.json()).catch(error => {
+  if(context.query.sort) {
+    url = `https://busca-fatos.deno.dev/v1/search/${encodedPath}?raw=1&st=${startIndex}&sort=date`;
+  } else {
+    url = `https://busca-fatos.deno.dev/v1/search/${encodedPath}?raw=1&st=${startIndex}`;
+  }
+
+  const data = await fetch(url).then(res => res.json()).catch(error => {
     console.error(error)
   });
+  // console.log(data)
     
   return {
     props: {

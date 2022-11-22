@@ -5,11 +5,11 @@ function Footer() {
         <div className="flex justify-center items-center md:col-span-2 lg:col-span-1 lg:col-start-2">
         </div>
         <div className="flex justify-center space-x-8 whitespace-nowrap md:justify-self-start">
-          <p><a href="https://buscafatos.com.br">Who are we?</a></p>
-          <p><a href="https://github.com/buscafatos/deno-api#sites-searched">How Search works?</a></p>
+          <p><a href="https://buscafatos.com.br">Quem somos?</a></p>
+          <p><a href="https://github.com/buscafatos/deno-api#sites-searched">Como a busca funciona?</a></p>
         </div>
         <div className="flex justify-center space-x-8 md:ml-auto">
-          <p><a href="https://github.com/buscafatos">Show me the code!</a></p>
+          <p><a href="https://github.com/buscafatos">Código Fonte</a></p>
         </div>
       </div>
     </footer>
