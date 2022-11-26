@@ -12,3 +12,18 @@
     @apply hover:underline cursor-pointer;
   }
 }
+
+@layer base {
+  body {
+    @apply bg-gray-900;
+  }
+  a {
+    color: #8dc63f;
+  }
+  p {
+    color: #F3F0EF;
+  }
+  input[type="text"], textarea {
+
+  }
+}

@@ -31,7 +31,7 @@ export async function getServerSideProps(context) {
   const encodedPath = encodeURIComponent(context.query.term);
   let url;
 
-  if(context.query.sort) {
+  if('date' == context.query.sort) {
     url = `https://busca-fatos.deno.dev/v1/search/${encodedPath}?raw=1&st=${startIndex}&sort=date`;
   } else {
     url = `https://busca-fatos.deno.dev/v1/search/${encodedPath}?raw=1&st=${startIndex}`;

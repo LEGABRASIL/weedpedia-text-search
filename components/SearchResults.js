@@ -9,7 +9,7 @@ function SearchResults({ results }) {
           <div className="group">
             <a href={item.link} className="text-sm">{item.formattedUrl}</a>
             <a href={item.link}>
-              <h2 className="truncate text-xl text-blue-800 font-medium group-hover:underline cursor-pointer">
+              <h2 className="truncate text-xl text-yellow-500  font-medium group-hover:underline cursor-pointer">
                 {item.title}
               </h2>  
             </a>
