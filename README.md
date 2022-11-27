@@ -4,7 +4,7 @@ Este é uma interface web simples, criada para testarmos nossas ferramentas e [A
 
 ## Experimente
 
-- [Versão BETA](https://busca-fatos.fly.dev/)
+- [Versão BETA](https://app.buscafatos.com.br/)
 
 ## Requisitos
 
