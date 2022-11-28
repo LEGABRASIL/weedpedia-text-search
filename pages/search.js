@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
   let url;
 
   if('date' == context.query.sort) {
-    url = `https://busca-fatos.deno.dev/v1/search/${encodedPath}?raw=1&st=${startIndex}&sort=date`;
+    url = `https://api.buscafatos.com.br/v1/search/${encodedPath}?raw=1&st=${startIndex}&sort=date`;
   } else {
     url = `https://busca-fatos.deno.dev/v1/search/${encodedPath}?raw=1&st=${startIndex}`;
   }
