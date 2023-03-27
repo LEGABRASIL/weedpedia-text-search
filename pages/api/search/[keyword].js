@@ -17,7 +17,7 @@ const pool = new Pool({
   password: config.password,
   ssl: {
         rejectUnauthorized: true,
-        ca: fs.readFileSync('./certs/weedpedia-prod-postgres.crt').toString()
+        ca: fs.readFileSync('./certs/weedpedia-prod-postgres2.crt').toString()
   },
   port: config.port,
 })
@@ -34,7 +34,6 @@ function millisToMinutesAndSeconds(millis) {
 
 const getByURL = (request, response, keyword) => {
   const start = performance.now()
-  console.time("getByURL");
   pool.query(`SELECT domain, url, tld, country, metatype, metatitle, metapublished_time FROM url_cannamatches WHERE raw_url LIKE '%${keyword}%'`, (error, results) => {
     if (error) {
       throw error
