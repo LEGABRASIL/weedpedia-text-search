@@ -12,6 +12,10 @@ COPY . /app
 COPY package.json /app
 # COPY yarn.lock /app
 
+mkdir /app/certs
+COPY certs/weedpedia-prod-postgres2.crt /app/certs/weedpedia-prod-postgres2.crt
+# COPY certs /app/certs
+
 RUN apk add --no-cache --virtual build-base \
     jpeg-dev \
     cairo-dev \
