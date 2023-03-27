@@ -1,10 +1,10 @@
-# Busca Fatos - interface web de busca BETA
+# WEEDPEDIA TEXT SEARCH BETA - interface web de busca BETA
 
-Este é uma interface web simples, criada para testarmos nossas ferramentas e [API'S](https://github.com/buscafatos/deno-api).
+<!-- Este é uma interface web simples, criada para testarmos nossas ferramentas e [API'S](https://github.com/buscafatos/deno-api). -->
 
 ## Experimente
 
-- [Versão BETA](https://app.buscafatos.com.br/)
+- [Versão BETA](https://textsearch.weedpedia.io/)
 
 ## Requisitos
 
@@ -18,7 +18,6 @@ Este é uma interface web simples, criada para testarmos nossas ferramentas e [A
 ## Contribuidores
 
 * [fcavalcantirj](https://github.com/fcavalcantirj)
-* [brunomanoel](https://github.com/brunomanoel)
 
 ## Suporte
 

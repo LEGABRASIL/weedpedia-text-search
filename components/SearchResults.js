@@ -7,8 +7,8 @@ function SearchResults({ results }) {
       {results.items?.map((item) => (
         <div key={item.url} className="max-w-xl mb-8">
           <div className="group">
-            <a href={item.url} className="text-sm">{item.domain}</a>
-            <a href={item.url}>
+            <a href={item.url} className="text-sm" target="_blank" rel="noreferrer">{item.domain}</a>
+            <a href={item.url} target="_blank" rel="noreferrer">
               <h2 className="truncate text-xl text-yellow-500  font-medium group-hover:underline cursor-pointer">
                 {item.url}
               </h2>  
