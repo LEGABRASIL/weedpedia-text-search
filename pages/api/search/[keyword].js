@@ -32,16 +32,40 @@ function millisToMinutesAndSeconds(millis) {
   return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-const getByURL = (request, response, keyword) => {
+const count = async (keyword) => {
+  return new Promise(resolve => {
+    let sql = `SELECT count(*) FROM url_cannamatches WHERE raw_url LIKE '%${keyword}%'`
+    pool.query(sql, (error, results) => {
+      if (error) {
+        //
+        console.log(error)
+      }
+      // console.log(results)
+      resolve(results)
+    })
+  });
+}
+
+const getByURL = async (request, response, keyword, st) => {
   const start = performance.now()
-  pool.query(`SELECT domain, url, tld, country, metatype, metatitle, metapublished_time FROM url_cannamatches WHERE raw_url LIKE '%${keyword}%'`, (error, results) => {
+
+  let totalCountObj = await count(keyword);
+  let totalCount = totalCountObj.rows[0].count
+  // console.log(totalCount)
+  // console.log(`totalCount=[${totalCount}]`)
+  let sql = `SELECT domain, url, tld, country, metatype, metatitle, metapublished_time 
+  FROM url_cannamatches WHERE raw_url LIKE '%${keyword}%' ORDER BY lastcrawledon DESC
+  OFFSET ${st} LIMIT 25
+  `
+  pool.query(sql, (error, results) => {
     if (error) {
       throw error
     }
+    console.log(`totalCount=[${totalCount}]---resultsNumber=[${results.rows.length}]`)
     const end = performance.now()
     let json = {}
     json.searchInformation = {}
-    json.searchInformation.formattedTotalResults = results.rows.length
+    json.searchInformation.formattedTotalResults = totalCount
     json.searchInformation.formattedSearchTime = millisToMinutesAndSeconds(end - start)
     json.items = results.rows
     response.status(200).json(json)
@@ -50,6 +74,10 @@ const getByURL = (request, response, keyword) => {
 
 export default (req, res) => {
   const { keyword } = req.query
-  return getByURL(req, res, keyword)
-  // res.status(200).json({ name: 'John Doe' })
+  const start = req.query.st
+  if(!keyword) {
+      return response.status(400).json(`badrequest`)
+  }
+  console.log(`keyword=[${keyword}]-start=[${start}]`)
+  return getByURL(req, res, keyword, start)
 }

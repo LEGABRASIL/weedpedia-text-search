@@ -280,9 +280,9 @@
   integrity sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==
 
 "@heroicons/react@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@heroicons/react/-/react-1.0.1.tgz"
-  integrity sha512-uikw2gKCmqnvjVxitecWfFLMOKyL9BTFcU4VM3hHj9OMwpkCr5Ke+MRMyY2/aQVmsYs4VTq7NCFX05MYwAHi3g==
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/@heroicons/react/-/react-1.0.6.tgz"
+  integrity sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
