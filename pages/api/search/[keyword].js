@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const config = {
-    host: 'weedpedia-prod-postgres-do-user-13240977-0.b.db.ondigitalocean.com',
+    host: 'private-weedpedia-prod-postgres-do-user-13240977-0.b.db.ondigitalocean.com',
     port: '25061',
     database: 'weedpedia-prod-db-pool',
     user: 'cannacrawler',
