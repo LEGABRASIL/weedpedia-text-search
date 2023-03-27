@@ -17,7 +17,7 @@ const pool = new Pool({
   password: config.password,
   ssl: {
         rejectUnauthorized: true,
-        ca: fs.readFileSync('./certs/weedpedia-prod-postgres2.crt').toString()
+        ca: fs.readFileSync('./certs/weedpedia-prod-postgres.crt').toString()
   },
   port: config.port,
 })
