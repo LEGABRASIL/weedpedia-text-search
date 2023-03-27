@@ -12,7 +12,7 @@ COPY . /app
 COPY package.json /app
 # COPY yarn.lock /app
 
-mkdir /app/certs
+RUN mkdir /app/certs
 COPY certs/weedpedia-prod-postgres2.crt /app/certs/weedpedia-prod-postgres2.crt
 # COPY certs /app/certs
 
