@@ -10,7 +10,7 @@ function Search({ results }) {
     <div>
       <Head>
         <title> {router.query.term} - Weedpedia BETA </title>
-        <link rel="icon" href="/public/logo-weedpedia.png"/>
+        <link rel="icon" href="/logo-weedpedia.png"/>
       </Head>
 
       {/*  Header */}
