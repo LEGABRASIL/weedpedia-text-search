@@ -79,5 +79,5 @@ export default (req, res) => {
       return response.status(400).json(`badrequest`)
   }
   console.log(`keyword=[${keyword}]-start=[${start}]`)
-  return getByURL(req, res, keyword, start)
+  return getByURL(req, res, keyword.toLowerCase(), start)
 }
