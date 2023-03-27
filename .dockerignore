@@ -1,0 +1,40 @@
+# flyctl launch added from .gitignore
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+**/busca-fatos-web/node_modules
+**/busca-fatos-web/.pnp
+**/busca-fatos-web/.pnp.js
+
+# testing
+**/busca-fatos-web/coverage
+
+# next.js
+**/busca-fatos-web/.next
+**/busca-fatos-web/out
+
+# production
+**/busca-fatos-web/build
+
+# misc
+**/busca-fatos-web/.DS_Store
+**/busca-fatos-web/*.pem
+
+# debug
+**/busca-fatos-web/npm-debug.log*
+**/busca-fatos-web/yarn-debug.log*
+**/busca-fatos-web/yarn-error.log*
+
+# local env files
+**/busca-fatos-web/.env.local
+**/busca-fatos-web/.env.development.local
+**/busca-fatos-web/.env.test.local
+**/busca-fatos-web/.env.production.local
+
+# vercel
+**/busca-fatos-web/.vercel
+
+**/busca-fatos-web/Response.js
+
+**/node_modules
+**/.next

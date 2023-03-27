@@ -38,9 +38,9 @@ function Header() {
       <div className="flex w-full p-6 items-center">
         <Image 
         loading="lazy"
-        src="https://media4.giphy.com/media/h1QX6JsKb6VGsJZGuS/giphy.gif?cid=790b7611abd1d13a284e7133b44819853e7d2c9f6506755b&rid=giphy.gif&ct=s" 
-        width={140}
-        height={140}
+        src="/logo-weedpedia.png" 
+        width={585}
+        height={80}
         onClick={()=>router.push("/")}
         className="cursor-pointer"
         />

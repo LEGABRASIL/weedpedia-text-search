@@ -5,16 +5,16 @@ function SearchResults({ results }) {
     <div className="mx-auto w-full px-3 sm:pl-[5%] md:pl=[14%] lg:pl-52">
       <p className="text-gray-600 text-md mb-5 mt-3"> About {results.searchInformation?.formattedTotalResults} results ({results.searchInformation?.formattedSearchTime} seconds) </p>
       {results.items?.map((item) => (
-        <div key={item.link} className="max-w-xl mb-8">
+        <div key={item.url} className="max-w-xl mb-8">
           <div className="group">
-            <a href={item.link} className="text-sm">{item.formattedUrl}</a>
-            <a href={item.link}>
+            <a href={item.url} className="text-sm">{item.domain}</a>
+            <a href={item.url}>
               <h2 className="truncate text-xl text-yellow-500  font-medium group-hover:underline cursor-pointer">
-                {item.title}
+                {item.url}
               </h2>  
             </a>
           </div>
-          <p className="line-clamp-2">{item.snippet}</p>
+          <p className="line-clamp-2">{item.metatitle}</p>
         </div>
       ))}
 

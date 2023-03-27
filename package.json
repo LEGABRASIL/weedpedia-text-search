@@ -1,17 +1,20 @@
 {
-  "name": "busca-fatos-web",
+  "name": "weedpedia-text-search-web",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider; next dev",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; next build",
-    "start": "next start -p 80",
-    "export": "next export"
+    "build": "next build",
+    "start": "next start -p 3000",
+    "export": "next export",
+    "deploy": "fly deploy -a weedpedia-text-search"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.1",
     "@tailwindcss/line-clamp": "^0.2.0",
+    "fs": "^0.0.1-security",
     "next": "^11.0.0",
+    "pg": "^8.10.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },

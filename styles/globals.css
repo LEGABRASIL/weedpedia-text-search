@@ -15,7 +15,7 @@
 
 @layer base {
   body {
-    @apply bg-gray-900;
+    background-color: #335F28;
   }
   a {
     color: #8dc63f;
@@ -23,7 +23,7 @@
   p {
     color: #F3F0EF;
   }
-  input[type="text"], textarea {
-
+  input[type="text"] {
+/*    background-color: #335F28;*/
   }
 }
