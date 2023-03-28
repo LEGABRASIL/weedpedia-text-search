@@ -34,7 +34,7 @@ function Header() {
   }
 
   return (
-    <header className="sticky top-0 bg-cyan-900 ">
+    <header className="sticky top-0 bg-white ">
       <div className="flex w-full p-6 items-center">
         <Image 
         loading="lazy"
@@ -44,13 +44,13 @@ function Header() {
         onClick={()=>router.push("/")}
         className="cursor-pointer"
         />
-        <form className="flex flex-grow px-6 py-3 ml-10 mr-5 border border-gray-200 rounded-full shadow-lg max-w-3xl items-center">
-          <input className="flex-grow w-full focus:outline-none bg-cyan-900 text-amber-500  " ref={searchInputRef} defaultValue={router.query.term} type="text" />
+        <form className="flex flex-grow px-6 py-3 ml-10 mr-5 border border-secondary-200 rounded-full shadow-lg max-w-3xl items-center">
+          <input className="flex-grow w-full focus:outline-none" ref={searchInputRef} defaultValue={router.query.term} type="text" />
           <XIcon 
-          className="h-7 sm:mr-3 text-gray-500 cursor-pointer transition duration-100 transform hover:scale-125"
+          className="h-7 sm:mr-3 text-secondary-500 cursor-pointer transition duration-100 transform hover:scale-125"
           onClick={() => searchInputRef.current.value=""}
           />
-          <SearchIcon onClick={(event)=>{search(event)}} className="h-6 text-blue-500 hidden sm:inline-flex cursor-pointer"/>
+          <SearchIcon onClick={(event)=>{search(event)}} className="h-6 text-secondary-500 hidden sm:inline-flex cursor-pointer"/>
           <button hidden type="submit" onClick={(event)=>{search(event)}}/>
         </form>
       </div>
