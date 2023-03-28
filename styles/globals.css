@@ -16,6 +16,9 @@
   .home .logo {
     max-width: 40vw;
   }
+  .header .logo {
+    max-width: 240px;
+  }
   body {
     @apply bg-secondary-100 text-secondary-700;
   }

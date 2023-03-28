@@ -34,15 +34,13 @@ function Header() {
   }
 
   return (
-    <header className="sticky top-0 bg-white ">
+    <header className="header sticky top-0 bg-white ">
       <div className="flex w-full p-6 items-center">
         <Image 
         loading="lazy"
-        src="/logo-weedpedia.png" 
-        width={585}
-        height={80}
+        src="/logo-weedpedia-color.svg" 
         onClick={()=>router.push("/")}
-        className="cursor-pointer"
+        className="logo cursor-pointer"
         />
         <form className="flex flex-grow px-6 py-3 ml-10 mr-5 border border-secondary-200 rounded-full shadow-lg max-w-3xl items-center">
           <input className="flex-grow w-full focus:outline-none" ref={searchInputRef} defaultValue={router.query.term} type="text" />
