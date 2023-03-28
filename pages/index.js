@@ -24,23 +24,25 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="home flex flex-col items-center justify-center h-screen">
       
       <Head>
         <title>Weedpedia Text search BETA</title>
-        <link rel="icon" href="/logo-weedpedia.png"/>
+        <link rel="icon" href="/weedpedia-icon.png"/>
       </Head>
 
       
       {/* Body */}
-        <form className="flex flex-col items-center mt-44 flex-grow w-4/5">
-        <Image src="/logo-weedpedia.png" 
+        <form className="flex flex-col items-center w-4/5">
+        <Image 
+          src="/logo-weedpedia-color.svg" 
+          className="logo mb-12"
           height={80}
           width={585}
           />
-          <div className="flex w-full mt-5 hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full border border-gray-200 px-5 py-3 items-center sm:max-w-xl lg:max-w-2xl">
-            <SearchIcon className="h-5 mr-3 text-gray-500"/>
-            <input ref={searchInputRef} type="text" className="flex-grow focus:outline-none text-amber-500" style={{backgroundColor: '#335F28'}}/>
+          <div className="flex bg-white w-full mt-5 hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full border border-secondary-300 px-5 py-3 items-center sm:max-w-xl lg:max-w-2xl">
+            <SearchIcon className="h-5 mr-3 text-secondary-500"/>
+            <input ref={searchInputRef} type="text" className="flex-grow" />
           </div>
           
           {/* Buttons */}

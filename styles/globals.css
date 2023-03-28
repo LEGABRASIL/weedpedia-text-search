@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-
   .btn {
     @apply bg-[#f8f9fa] p-3 rounded-md ring-gray-200 text-sm text-gray-800 hover:ring-1 focus:outline-none active:ring-gray-300 hover:shadow-md;
   }
@@ -14,14 +13,17 @@
 }
 
 @layer base {
+  .home .logo {
+    max-width: 40vw;
+  }
   body {
-    background-color: #335F28;
+    @apply bg-secondary-100 text-secondary-700;
   }
   a {
-    color: #8dc63f;
+    @apply text-primary-500;
   }
   p {
-    color: #F3F0EF;
+    /* @apply text-primary-900; */
   }
   input[type="text"] {
 /*    background-color: #335F28;*/
