@@ -4,9 +4,21 @@
 
 @layer components {
   .btn {
-    @apply bg-[#f8f9fa] p-3 rounded-md ring-secondary-200 text-sm text-secondary-800 hover:ring-1 focus:outline-none active:ring-secondary-300 hover:shadow-md;
+    @apply flex items-center bg-secondary-200 p-3 px-4 transition ease-in-out rounded-md text-sm text-secondary-800 hover:ring-0 focus:outline-none enabled:hover:shadow-md enabled:hover:bg-primary-400 enabled:active:bg-primary-500;
   }
-
+  .btn {
+    @apply bg-primary-500 p-3 px-4 transition ease-in-out rounded-md text-sm text-primary-800 hover:ring-0 focus:outline-none enabled:hover:shadow-md enabled:hover:bg-primary-600 enabled:active:bg-primary-500;
+  }
+  .btn .icon {
+    @apply h-4
+  }
+  .btn .icon.left {
+    @apply mr-2 -ml-1
+  }
+  .btn .icon.right {
+    @apply ml-2 -mr-1
+  }
+  
   .link {
     @apply hover:underline cursor-pointer;
   }
@@ -16,11 +28,21 @@
   .home .logo-container {
     position: relative;
     width: 40vw;
-    height: 80px;
+    min-height: 60px;
     margin: 0 auto;
   }
-  .header .logo {
-    max-width: 240px;
+  .header {
+    z-index: 5;
+  }
+  .header .logo-container {
+    position: relative;
+    width: 160px;
+    min-height: 60px;
+    margin: 0 auto;
+  }
+  .result {
+    position: relative;
+    @apply py-3 px-6 rounded max-sm:bg-white ring-secondary-200 hover:ring-1
   }
   body {
     @apply bg-secondary-100 text-secondary-700;

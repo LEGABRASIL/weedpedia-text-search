@@ -1,8 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head'
 import Image from 'next/image';
-import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 import { ViewGridIcon } from '@heroicons/react/solid';
 import { SearchIcon } from '@heroicons/react/outline';
 
@@ -10,7 +10,15 @@ export default function Home() {
 
   const searchInputRef = useRef(null);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
+  const handleKey = (event) => {
+    event.preventDefault();
+    console.log('handleKey', event.key);
+    if (event.key === 'Enter') {
+      search(event);
+    }
+  }
   const search = (event) => {
     event.preventDefault();
     const term = searchInputRef.current.value;
@@ -18,6 +26,9 @@ export default function Home() {
     if (!term) {
       return;
     }
+
+    setLoading(true);
+    console.log('loading', loading);
 
     router.push(`/search?term=${term}`);
 
@@ -43,7 +54,7 @@ export default function Home() {
             <Image 
               src="/logo-weedpedia-color.svg" 
               className="logo mb-12"
-              layout='fill'
+              layout="fill"
             />
           </div>
           <div 
@@ -55,18 +66,30 @@ export default function Home() {
             <input 
               ref={searchInputRef} 
               type="text" 
-              placeholder="Find cannabis news, legislation, products and more"
+              placeholder="Search cannabis news, legislation, products and more"
               className="flex-grow focus:outline-none" 
+              onKeyUp={handleKey} 
             />
           </div>
           
           {/* Buttons */}
           <div className="flex flex-col w-1/2 space-y-2 justify-center mt-8 sm:space-y-0 sm:flex-row sm:space-x-4">
             <button 
+              className="btn search"
+              disabled={loading}
               onClick={(event)=>search(event)} 
-              className="btn"
             > 
-              URL beta finder
+              {
+                loading ? 
+                  <Loading />
+                :
+                <span
+                  className="btn-label"
+                >
+                  Search
+                </span> 
+              }
+              
             </button>
           </div>
         </form>
