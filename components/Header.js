@@ -34,7 +34,7 @@ function Header() {
   }
 
   return (
-    <header className="header sticky top-0 bg-white ">
+    <header className="header sticky top-0 bg-secondary ">
       <div className="flex w-full p-6 items-center">
         <Image 
         loading="lazy"

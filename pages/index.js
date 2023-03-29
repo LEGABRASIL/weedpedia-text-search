@@ -47,7 +47,7 @@ export default function Home() {
           
           {/* Buttons */}
           <div className="flex flex-col w-1/2 space-y-2 justify-center mt-8 sm:space-y-0 sm:flex-row sm:space-x-4">
-            <button onClick={(event)=>search(event)} className="btn"> text search</button>
+            <button onClick={(event)=>search(event)} className="btn"> URL beta finder</button>
           </div>
         </form>
     </div>
