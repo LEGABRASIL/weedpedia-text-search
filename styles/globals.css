@@ -13,8 +13,11 @@
 }
 
 @layer base {
-  .home .logo {
-    max-width: 40vw;
+  .home .logo-container {
+    position: relative;
+    width: 40vw;
+    height: 80px;
+    margin: 0 auto;
   }
   .header .logo {
     max-width: 240px;

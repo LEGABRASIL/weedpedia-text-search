@@ -37,3 +37,4 @@ busca-fatos-web/Response.js
 
 node_modules/
 .next/
+.DS_Store
