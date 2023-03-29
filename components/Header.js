@@ -39,6 +39,8 @@ function Header() {
         <Image 
         loading="lazy"
         src="/logo-weedpedia-color.svg" 
+        width={410} 
+        height={60}
         onClick={()=>router.push("/")}
         className="logo cursor-pointer"
         />
