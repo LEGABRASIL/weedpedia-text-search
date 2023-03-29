@@ -16,6 +16,7 @@ function Header() {
     if (!term) {
       return;
     }
+    console.log(term)
     router.push(`/search?term=${term}`);
 
     searchInputRef.current.value = term;
@@ -23,6 +24,7 @@ function Header() {
 
   const searchSortByDate = (event) => {
     event.preventDefault();
+
     const term = searchInputRef.current.value;
 
     if (!term) {
@@ -32,6 +34,7 @@ function Header() {
 
     searchInputRef.current.value = term;
   }
+
 
   return (
     <header className="header sticky top-0 bg-secondary ">
@@ -50,8 +53,8 @@ function Header() {
           className="h-7 sm:mr-3 text-secondary-500 cursor-pointer transition duration-100 transform hover:scale-125"
           onClick={() => searchInputRef.current.value=""}
           />
-          <SearchIcon onClick={(event)=>{search(event)}} className="h-6 text-secondary-500 hidden sm:inline-flex cursor-pointer"/>
-          <button hidden type="submit" onClick={(event)=>{search(event)}}/>
+          <SearchIcon onClick={(event)=>{search(event)}} className="h-6 text-secondary-500 sm:inline-flex cursor-pointer"/>
+          <button hidden onClick={(event)=>{search(event)}}/>
         </form>
       </div>
 

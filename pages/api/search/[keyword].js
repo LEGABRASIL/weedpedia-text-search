@@ -73,11 +73,12 @@ const getByURL = async (request, response, keyword, st) => {
 }
 
 export default (req, res) => {
-  const { keyword } = req.query
+  let { keyword } = req.query
   const start = req.query.st
   if(!keyword) {
       return response.status(400).json(`badrequest`)
   }
+  keyword = keyword.toLowerCase().replace(/\s/g, '')
   console.log(`keyword=[${keyword}]-start=[${start}]`)
-  return getByURL(req, res, keyword.toLowerCase(), start)
+  return getByURL(req, res, keyword, start)
 }
