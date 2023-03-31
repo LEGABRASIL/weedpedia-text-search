@@ -58,16 +58,16 @@ export default function Home() {
             />
           </div>
           <div 
-            className="flex bg-white w-full mt-12 transition-[box-shadow] duration-500 ease-in-out hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full border border-secondary-300 px-5 py-3 items-center sm:max-w-xl lg:max-w-2xl"
+            className="flex bg-white w-full mt-12 max-sm:mt-8 transition-[box-shadow] duration-500 ease-in-out hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full border border-secondary-300 pl-6 py-3 items-center sm:max-w-xl lg:max-w-2xl"
           >
             <SearchIcon 
-              className="h-5 mr-3 text-secondary-500"
+              className="h-5 -ml-2 inline-block mr-3 text-secondary-500"
             />
             <input 
               ref={searchInputRef} 
               type="text" 
               placeholder="Search cannabis news, legislation, products and more"
-              className="flex-grow focus:outline-none" 
+              className="flex-grow bg-transparent focus:outline-none" 
               onKeyUp={handleKey} 
             />
           </div>

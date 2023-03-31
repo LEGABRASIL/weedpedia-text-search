@@ -4,7 +4,7 @@
 
 @layer components {
   .btn {
-    @apply flex items-center bg-secondary-200 p-3 px-4 transition ease-in-out rounded-md text-sm text-secondary-800 hover:ring-0 focus:outline-none enabled:hover:shadow-md enabled:hover:bg-primary-400 enabled:active:bg-primary-500;
+    @apply flex justify-center items-center bg-secondary-200 p-3 px-4 transition ease-in-out rounded-md text-sm text-secondary-800 hover:ring-0 focus:outline-none enabled:hover:shadow-md enabled:hover:bg-primary-400 enabled:active:bg-primary-500;
   }
   .btn {
     @apply bg-primary-500 p-3 px-4 transition ease-in-out rounded-md text-sm text-primary-800 hover:ring-0 focus:outline-none enabled:hover:shadow-md enabled:hover:bg-primary-600 enabled:active:bg-primary-500;
@@ -27,8 +27,8 @@
 @layer base {
   .home .logo-container {
     position: relative;
-    width: 40vw;
-    min-height: 60px;
+    width: 50vw;
+    min-height: 72px;
     margin: 0 auto;
   }
   .header {
@@ -44,11 +44,14 @@
     position: relative;
     @apply py-3 px-6 rounded max-sm:bg-white ring-secondary-200 hover:ring-1
   }
+  .text-caption {
+    @apply text-[.75rem]
+  }
   body {
     @apply bg-secondary-100 text-secondary-700;
   }
   a {
-    @apply text-primary-500;
+    @apply text-primary-600;
   }
   p {
     /* @apply text-primary-900; */

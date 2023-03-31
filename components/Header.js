@@ -60,12 +60,12 @@ function Header() {
           />
         </div>
         <form onSubmit={submitContact} className="flex flex-grow px-6 py-3 -mb-10 mx-auto shadow-md bg-white border border-secondary-200 rounded-full max-w-3xl items-center">
-          <input className="flex-grow w-full focus:outline-none" ref={searchInputRef} defaultValue={router.query.term} type="text" />
+          <input className="flex-grow bg-transparent w-full focus:outline-none" ref={searchInputRef} defaultValue={router.query.term} type="text" />
           <XIcon 
-          className="h-7 sm:mr-3 text-secondary-500 cursor-pointer transition duration-100 transform hover:scale-125"
+          className="h-6 mx-2 inline-block text-secondary-500 cursor-pointer transition duration-100 hover:text-primary-600"
           onClick={() => searchInputRef.current.value=""}
           />
-          <SearchIcon onClick={(event)=>{search(event)}} className="h-6 text-secondary-500 sm:inline-flex cursor-pointer"/>
+          <SearchIcon onClick={(event)=>{search(event)}} className="h-6 text-secondary-500 -mr-1 inline-block cursor-pointer hover:text-primary-600"/>
         </form>
       </div>
 
