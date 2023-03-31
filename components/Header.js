@@ -16,7 +16,7 @@ function Header() {
     if (!term) {
       return;
     }
-    console.log(term)
+    // console.log(term)
     router.push(`/search?term=${term}`);
 
     searchInputRef.current.value = term;
@@ -36,7 +36,7 @@ function Header() {
   }
 
   const submitContact = async (event) => {
-    console.log(event)
+    // console.log(event)
     if (event) {
       event.preventDefault();
       search(event)
