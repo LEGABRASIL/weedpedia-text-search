@@ -14,7 +14,7 @@ export default function Home() {
 
   const handleKey = (event) => {
     event.preventDefault();
-    console.log('handleKey', event.key);
+    // console.log('handleKey', event.key);
     if (event.key === 'Enter') {
       search(event);
     }

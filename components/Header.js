@@ -35,6 +35,14 @@ function Header() {
     searchInputRef.current.value = term;
   }
 
+  const submitContact = async (event) => {
+    console.log(event)
+    if (event) {
+      event.preventDefault();
+      search(event)
+    }
+  };
+
 
   return (
     <header className="header sticky top-0 bg-white border-b border-secondary-200">
@@ -51,14 +59,13 @@ function Header() {
             className="logo cursor-pointer"
           />
         </div>
-        <form className="flex flex-grow px-6 py-3 -mb-10 mx-auto shadow-md bg-white border border-secondary-200 rounded-full max-w-3xl items-center">
+        <form onSubmit={submitContact} className="flex flex-grow px-6 py-3 -mb-10 mx-auto shadow-md bg-white border border-secondary-200 rounded-full max-w-3xl items-center">
           <input className="flex-grow w-full focus:outline-none" ref={searchInputRef} defaultValue={router.query.term} type="text" />
           <XIcon 
           className="h-7 sm:mr-3 text-secondary-500 cursor-pointer transition duration-100 transform hover:scale-125"
           onClick={() => searchInputRef.current.value=""}
           />
           <SearchIcon onClick={(event)=>{search(event)}} className="h-6 text-secondary-500 sm:inline-flex cursor-pointer"/>
-          <button hidden onClick={(event)=>{search(event)}}/>
         </form>
       </div>
 
