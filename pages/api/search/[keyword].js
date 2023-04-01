@@ -142,10 +142,10 @@ const queryBuilder = (searchQuery, st) => {
   } else if(count === 2 && !operator || count > 2 && !operator) {
 
       sql = `SELECT domain, url, tld, country, metatype, metatitle, metapublished_time 
-  FROM url_cannamatches WHERE raw_url LIKE '%${cleanedKeywords[0]}%' OR raw_url LIKE '%${cleanedKeywords[1]}%' AND app_header != 'go-cannacrawler0.0.2' ORDER BY lastcrawledon DESC
+  FROM url_cannamatches WHERE raw_url LIKE '%${cleanedKeywords[0]}%' AND raw_url LIKE '%${cleanedKeywords[1]}%' AND app_header != 'go-cannacrawler0.0.2' ORDER BY lastcrawledon DESC
   OFFSET ${st} LIMIT 25
   `
-      countQuery = `SELECT count(*) FROM url_cannamatches WHERE raw_url LIKE '%${cleanedKeywords[0]}%' OR raw_url LIKE '%${cleanedKeywords[1]}%' AND app_header != 'go-cannacrawler0.0.2'`
+      countQuery = `SELECT count(*) FROM url_cannamatches WHERE raw_url LIKE '%${cleanedKeywords[0]}%' AND raw_url LIKE '%${cleanedKeywords[1]}%' AND app_header != 'go-cannacrawler0.0.2'`
 
   } else if(count === 2 && operator || count > 2 && operator) {
 
