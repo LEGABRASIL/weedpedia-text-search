@@ -173,8 +173,10 @@ const log = (request, response, searchQuery, timeInMillis, totalCount) => {
         const _response = apiResponse.data;
         console.log(_response)
 
-        let stmt = `INSERT INTO search_queries ("req_url", "req_method", "req_query_raw", "req_query_keyword", "res_raw_headers", "res_status_code", "search_time_millis", "search_time_parsed", "apiip_ip_lookup", "country_code", "country_name", "city", "user_agent_is_bot", "user_agent_is_mobile", "user_agent", "results", "remote_ip", "created_on") VALUES
-('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${JSON.stringify(request.headers)}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', '${_response}', '${_response.countryCode}', '${_response.countryName}', '${_response.city}', '${_response?.userAgent?.isBot}', '${_response?.userAgent?.isMobile}', '${_response?.userAgent?.source}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
+//         let stmt = `INSERT INTO search_queries ("req_url", "req_method", "req_query_raw", "req_query_keyword", "res_raw_headers", "res_status_code", "search_time_millis", "search_time_parsed", "apiip_ip_lookup", "country_code", "country_name", "city", "user_agent_is_bot", "user_agent_is_mobile", "user_agent", "results", "remote_ip", "created_on") VALUES
+// ('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${JSON.stringify(request.headers)}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', '${_response}', '${_response.countryCode}', '${_response.countryName}', '${_response.city}', '${_response?.userAgent?.isBot}', '${_response?.userAgent?.isMobile}', '${_response?.userAgent?.source}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
+        let stmt = `INSERT INTO search_queries ("req_url", "req_method", "req_query_raw", "req_query_keyword", "res_raw_headers", "res_status_code", "search_time_millis", "search_time_parsed", "apiip_ip_lookup", "country_code", "country_name", "city", "user_agent", "results", "remote_ip", "created_on") VALUES
+('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${JSON.stringify(request.headers)}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', '${_response}', '${_response.countryCode}', '${_response.countryName}', '${_response.city}', '${request.get('user-agent')}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
         pool.query(stmt);
 
         console.log(`>>>> LOG query OK`);
@@ -182,8 +184,8 @@ const log = (request, response, searchQuery, timeInMillis, totalCount) => {
     .catch(error => {
         console.log(error);
 
-        let stmt = `INSERT INTO search_queries ("req_url", "req_method", "req_query_raw", "req_query_keyword", "res_raw_headers", "res_status_code", "search_time_millis", "search_time_parsed", "results", "remote_ip", "created_on") VALUES
-('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${JSON.stringify(request.headers)}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
+        let stmt = `INSERT INTO search_queries ("req_url", "req_method", "req_query_raw", "req_query_keyword", "res_raw_headers", "res_status_code", "search_time_millis", "search_time_parsed", "user_agent", "results", "remote_ip", "created_on") VALUES
+('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${JSON.stringify(request.headers)}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', '${request.get('user-agent')}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
         // console.log(stmt)
         pool.query(stmt)
 
