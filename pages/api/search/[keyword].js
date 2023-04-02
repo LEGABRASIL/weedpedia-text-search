@@ -162,7 +162,10 @@ const queryBuilder = (searchQuery, st) => {
 }
 
 const log = (request, response, searchQuery, timeInMillis, totalCount) => {
-  const ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
+  let ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
+  if(ipAddress.indexOf(',') > 0) {
+    ipAddress = ipAddress.split(',')[0]
+  }
   console.log(`ipAddress=[${ipAddress}]`)
   let url = `https://apiip.net/api/check?ip=${ipAddress}&accessKey=60ff063e-2d4b-42ff-b409-2e377e6a5866`
   axios.get(url)
@@ -181,7 +184,7 @@ const log = (request, response, searchQuery, timeInMillis, totalCount) => {
 
         let stmt = `INSERT INTO search_queries ("req_url", "req_method", "req_query_raw", "req_query_keyword", "res_raw_headers", "res_status_code", "search_time_millis", "search_time_parsed", "results", "remote_ip", "created_on") VALUES
 ('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${JSON.stringify(request.headers)}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
-        console.log(stmt)
+        // console.log(stmt)
         pool.query(stmt)
 
         console.log(`>>>> LOG query NOK`);
