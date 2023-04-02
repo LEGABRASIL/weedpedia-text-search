@@ -220,7 +220,11 @@ export default (req, res) => {
   if(!keyword) {
       return res.status(400).json(`badrequest`)
   }
+  const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   keyword = keyword.toLowerCase()
-  console.log(`keyword=[${keyword}]-start=[${start}]`)
+  console.log(`keyword=[${keyword}]-start=[${start}]--ipAddress=[${ipAddress}]`)
+  if(!ipAddress || '127.0.0.1' != ipAddress) {
+      return res.status(400).json(`badrequest`)
+  }
   return getByURL(req, res, keyword, start)
 }
