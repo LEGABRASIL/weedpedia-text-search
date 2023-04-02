@@ -167,7 +167,7 @@ const log = (request, response, searchQuery, timeInMillis, totalCount) => {
     ipAddress = ipAddress.split(',')[0]
   }
   console.log(`ipAddress=[${ipAddress}]`)
-  let url = `http://apiip.net/api/check?ip=${ipAddress}&accessKey=60ff063e-2d4b-42ff-b409-2e377e6a5866`
+  let url = `http://apiip.net/api/check?ip=${ipAddress}&accessKey=60ff063e-2d4b-42ff-b409-2e377e6a5866&fields=countryCode,countryName,city,userAgent.isBot,userAgent.isMobile,userAgent.source`
   axios.get(url)
     .then(apiResponse => {
         const _response = apiResponse.data;
