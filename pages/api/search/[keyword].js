@@ -8,6 +8,8 @@ const config = {
     connectionTimeoutMillis: 5000
 };
 
+const moment = require('moment')
+const axios = require('axios')
 const fs = require('fs')
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -159,14 +161,39 @@ const queryBuilder = (searchQuery, st) => {
   return [sql, countQuery]
 }
 
+const log = (request, response, searchQuery, timeInMillis, totalCount) => {
+  const ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
+  console.log(`ipAddress=[${ipAddress}]`)
+  let url = `https://apiip.net/api/check?ip=${ipAddress}&accessKey=60ff063e-2d4b-42ff-b409-2e377e6a5866`
+  axios.get(url)
+    .then(apiResponse => {
+        const _response = apiResponse.data;
+        console.log(_response)
+
+        let stmt = `INSERT INTO search_queries ("req_url", "req_method", "req_query_raw", "req_query_keyword", "res_raw_headers", "res_status_code", "search_time_millis", "search_time_parsed", "apiip_ip_lookup", "country_code", "country_name", "city", "user_agent_is_bot", "user_agent_is_mobile", "user_agent", "results", "remote_ip", "created_on") VALUES
+('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${request.rawHeaders}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', '${_response}', '${_response.countryCode}', '${_response.countryName}', '${_response.city}', '${_response.userAgent.isBot}', '${_response.userAgent.isMobile}', '${_response.userAgent.source}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
+        pool.query(stmt);
+
+        console.log(`>>>> LOG query OK`);
+    })
+    .catch(error => {
+        console.log(error);
+
+        let stmt = `INSERT INTO search_queries ("req_url", "req_method", "req_query_raw", "req_query_keyword", "res_raw_headers", "res_status_code", "search_time_millis", "search_time_parsed", "results", "remote_ip", "created_on") VALUES
+('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${response.rawHeaders}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
+        console.log(stmt)
+        pool.query(stmt)
+
+        console.log(`>>>> LOG query NOK`);
+    });
+}
+
 const getByURL = async (request, response, searchQuery, st) => {
   const start = performance.now()
 
   let queries = queryBuilder(searchQuery, st)
   let totalCountObj = await count(queries[1]);
   let totalCount = totalCountObj.rows[0].count
-  // console.log(totalCount)
-  // console.log(`totalCount=[${totalCount}]`)
   let sql = queries[0]
   pool.query(sql, (error, results) => {
     if (error) {
@@ -174,38 +201,16 @@ const getByURL = async (request, response, searchQuery, st) => {
     }
     console.log(`totalCount=[${totalCount}]---resultsNumber=[${results.rows.length}]`)
     const end = performance.now()
+    const delta = end - start
     let json = {}
     json.searchInformation = {}
     json.searchInformation.formattedTotalResults = totalCount
-    json.searchInformation.formattedSearchTime = millisToMinutesAndSeconds(end - start)
+    json.searchInformation.formattedSearchTime = millisToMinutesAndSeconds(delta)
     json.items = results.rows
     response.status(200).json(json)
-  })
-}
-
-const getByURLOld = async (request, response, searchQuery, st) => {
-  const start = performance.now()
-
-  let totalCountObj = await count(searchQuery);
-  let totalCount = totalCountObj.rows[0].count
-  // console.log(totalCount)
-  // console.log(`totalCount=[${totalCount}]`)
-  let sql = `SELECT domain, url, tld, country, metatype, metatitle, metapublished_time 
-  FROM url_cannamatches WHERE raw_url LIKE '%${searchQuery}%' ORDER BY lastcrawledon DESC
-  OFFSET ${st} LIMIT 25
-  `
-  pool.query(sql, (error, results) => {
-    if (error) {
-      throw error
-    }
-    console.log(`totalCount=[${totalCount}]---resultsNumber=[${results.rows.length}]`)
-    const end = performance.now()
-    let json = {}
-    json.searchInformation = {}
-    json.searchInformation.formattedTotalResults = totalCount
-    json.searchInformation.formattedSearchTime = millisToMinutesAndSeconds(end - start)
-    json.items = results.rows
-    response.status(200).json(json)
+    // record on db
+    // console.log(response)
+    log(request, response, searchQuery, delta, totalCount)
   })
 }
 
