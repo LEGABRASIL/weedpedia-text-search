@@ -224,7 +224,7 @@ export default (req, res) => {
   keyword = keyword.toLowerCase()
   console.log(`keyword=[${keyword}]-start=[${start}]--ipAddress=[${ipAddress}]`)
   if(!ipAddress || '127.0.0.1' != ipAddress) {
-      return res.status(400).json(`badrequest`)
+      //return res.status(400).json(`badrequest`)
   }
   return getByURL(req, res, keyword, start)
 }
