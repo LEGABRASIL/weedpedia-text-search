@@ -162,10 +162,7 @@ const queryBuilder = (searchQuery, st) => {
 }
 
 const log = (request, response, searchQuery, timeInMillis, totalCount) => {
-  let ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
-  if(ipAddress.indexOf(',') > 0) {
-    ipAddress = ipAddress.split(',')[0]
-  }
+  const ipAddress = req.socket.remoteAddress || req.headers['x-forwarded-for']
   console.log(`ipAddress=[${ipAddress}]`)
   let url = `http://apiip.net/api/check?ip=${ipAddress}&accessKey=60ff063e-2d4b-42ff-b409-2e377e6a5866` //&fields=countryCode,countryName,city, userAgent.isBot,userAgent.isMobile,userAgent.source
   axios.get(url)
@@ -240,7 +237,7 @@ export default (req, res) => {
       return res.status(400).json(`badrequest`)
   }
   // const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  const ipAddress = req.socket.remoteAddress
+  const ipAddress = req.socket.remoteAddress || req.headers['x-forwarded-for']
   keyword = keyword.toLowerCase()
   console.log(`keyword=[${keyword}]-start=[${start}]--ipAddress=[${ipAddress}]`)
   if(!ipAddress || '127.0.0.1' != ipAddress) {
