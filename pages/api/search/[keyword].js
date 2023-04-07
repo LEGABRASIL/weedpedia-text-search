@@ -162,7 +162,7 @@ const queryBuilder = (searchQuery, st) => {
 }
 
 const log = (request, response, searchQuery, timeInMillis, totalCount) => {
-  const ipAddress = request.socket.remoteAddress || request.headers['x-forwarded-for']
+  const ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
   console.log(`ipAddress=[${ipAddress}]`)
   let url = `http://apiip.net/api/check?ip=${ipAddress}&accessKey=60ff063e-2d4b-42ff-b409-2e377e6a5866` //&fields=countryCode,countryName,city, userAgent.isBot,userAgent.isMobile,userAgent.source
   axios.get(url)
@@ -192,10 +192,8 @@ const log = (request, response, searchQuery, timeInMillis, totalCount) => {
 ('${request.url}', '${request.method}', '${JSON.stringify(request.query)}', '${searchQuery}', '${JSON.stringify(request.headers)}', ${response.statusCode}, ${timeInMillis}, '${millisToMinutesAndSeconds(timeInMillis)}', '${request.headers['user-agent']}', ${totalCount}, '${ipAddress}', '${moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}')`
         // console.log(stmt)
         pool.query(stmt, function(err, result) {
-             //`err` will contain error information, including amessage letting you know that `does_not_exist` does not exist.
-            if( err && err.code && err.code == '23505') {
-              //ignore
-            } else if (err) {
+            //`err` will contain error information, including amessage letting you know that `does_not_exist` does not exist.
+            if (err) {
               console.log(err)
             }
         })
@@ -237,7 +235,7 @@ export default (req, res) => {
       return res.status(400).json(`badrequest`)
   }
   // const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  const ipAddress = req.socket.remoteAddress || req.headers['x-forwarded-for']
+  const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   keyword = keyword.toLowerCase()
   console.log(`keyword=[${keyword}]-start=[${start}]--ipAddress=[${ipAddress}]`)
   if(!ipAddress || '127.0.0.1' != ipAddress) {
