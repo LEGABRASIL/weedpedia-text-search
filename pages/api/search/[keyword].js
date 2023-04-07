@@ -162,7 +162,7 @@ const queryBuilder = (searchQuery, st) => {
 }
 
 const log = (request, response, searchQuery, timeInMillis, totalCount) => {
-  const ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
+  let ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
   if(ipAddress.indexOf(',') > 0) {
     ipAddress = ipAddress.split(',')[0]
   }
