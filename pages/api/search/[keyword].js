@@ -163,6 +163,9 @@ const queryBuilder = (searchQuery, st) => {
 
 const log = (request, response, searchQuery, timeInMillis, totalCount) => {
   const ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
+  if(ipAddress.indexOf(',') > 0) {
+    ipAddress = ipAddress.split(',')[0]
+  }
   console.log(`ipAddress=[${ipAddress}]`)
   let url = `http://apiip.net/api/check?ip=${ipAddress}&accessKey=60ff063e-2d4b-42ff-b409-2e377e6a5866` //&fields=countryCode,countryName,city, userAgent.isBot,userAgent.isMobile,userAgent.source
   axios.get(url)
