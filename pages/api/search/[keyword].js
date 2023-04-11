@@ -238,10 +238,10 @@ export default (req, res) => {
   if(!keyword) {
       return res.status(400).json(`badrequest`)
   }
-  const normalizedKeyword = replaceSpecialCharacters(keyword);
+  let normalizedKeyword = replaceSpecialCharacters(keyword);
   // const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  keyword = keyword.toLowerCase()
+  normalizedKeyword = normalizedKeyword.toLowerCase()
   console.log(`keyword=[${keyword}]--normalized=[${normalizedKeyword}]--tart=[${start}]--ipAddress=[${ipAddress}]`)
   if(!ipAddress || '127.0.0.1' != ipAddress) {
       //return res.status(400).json(`badrequest`)
