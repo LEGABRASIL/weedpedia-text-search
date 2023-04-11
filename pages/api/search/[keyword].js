@@ -8,6 +8,7 @@ const config = {
     connectionTimeoutMillis: 5000
 };
 
+const replaceSpecialCharacters = require('replace-special-characters');
 const moment = require('moment')
 const axios = require('axios')
 const fs = require('fs')
@@ -237,12 +238,13 @@ export default (req, res) => {
   if(!keyword) {
       return res.status(400).json(`badrequest`)
   }
+  const normalizedKeyword = replaceSpecialCharacters(keyword);
   // const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   keyword = keyword.toLowerCase()
-  console.log(`keyword=[${keyword}]-start=[${start}]--ipAddress=[${ipAddress}]`)
+  console.log(`keyword=[${keyword}]--normalized=[${normalizedKeyword}]--tart=[${start}]--ipAddress=[${ipAddress}]`)
   if(!ipAddress || '127.0.0.1' != ipAddress) {
       //return res.status(400).json(`badrequest`)
   }
-  return getByURL(req, res, keyword, start)
+  return getByURL(req, res, normalizedKeyword, start)
 }
