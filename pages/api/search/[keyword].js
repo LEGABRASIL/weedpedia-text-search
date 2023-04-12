@@ -83,6 +83,22 @@ const removeKnownOperators = (array) => {
   return array.filter(element => element != 'or' && element != 'and')
 }
 
+const sendToPROD = async (url) => {
+
+    const data = {
+      url: url
+    }
+    const config = {
+      headers: {
+        'X-CANNACRAWLER-MUTHAFUCKA': 'a7fea823-639d-4f79-93b0-5a26d60d8e8f'
+      }
+    }
+
+    await axios
+      .post('http://cannacrawlerapinodejs.weedpedia.info:4200/v1/addurl/', data, config)
+// http://164.92.113.85:4200/v1/addurl/
+}
+
 
 /**
 ==== algorithm
@@ -163,6 +179,10 @@ const queryBuilder = (searchQuery, st) => {
 }
 
 const log = (request, response, searchQuery, timeInMillis, totalCount) => {
+  if (0 == totalCount) {
+    sendToPROD(`https://www.google.com/search?q=${searchQuery}&oq=${searchQuery}`)
+    // todo improve
+  }
   let ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
   if(ipAddress.indexOf(',') > 0) {
     ipAddress = ipAddress.split(',')[0]
