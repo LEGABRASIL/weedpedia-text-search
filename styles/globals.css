@@ -7,7 +7,7 @@
     @apply flex justify-center items-center bg-secondary-200 p-3 px-4 transition ease-in-out rounded-md text-sm text-secondary-800 hover:ring-0 focus:outline-none enabled:hover:shadow-md enabled:hover:bg-primary-400 enabled:active:bg-primary-500;
   }
   .btn {
-    @apply bg-primary-500 p-3 px-4 transition ease-in-out rounded-md text-sm text-primary-800 hover:ring-0 focus:outline-none enabled:hover:shadow-md enabled:hover:bg-primary-600 enabled:active:bg-primary-500;
+    @apply bg-primary-500 p-3 px-4 transition ease-in-out rounded-md text-sm text-primary-800 hover:ring-0 focus:outline-none enabled:hover:shadow-md enabled:hover:bg-primary-400 enabled:active:bg-primary-500;
   }
   .btn .icon {
     @apply h-4

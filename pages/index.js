@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head'
 import Image from 'next/image';
@@ -11,6 +11,12 @@ export default function Home() {
   const searchInputRef = useRef(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
 
   const handleKey = (event) => {
     event.preventDefault();
@@ -64,8 +70,9 @@ export default function Home() {
               className="h-5 -ml-2 inline-block mr-3 text-secondary-500"
             />
             <input 
+              autoFocus
               ref={searchInputRef} 
-              type="text" 
+              type="text"
               placeholder="Search cannabis news, legislation, products and more"
               className="flex-grow bg-transparent focus:outline-none" 
               onKeyUp={handleKey} 
