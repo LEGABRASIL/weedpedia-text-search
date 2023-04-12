@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 
 @layer components {
   .btn {
@@ -47,7 +51,20 @@
   .text-caption {
     @apply text-[.75rem]
   }
+  .word-cloud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .word-cloud .word {
+    position: absolute;
+    opacity: .6;
+    @apply text-center text-secondary-400 whitespace-nowrap
+  }
   body {
+    font-family: 'Inter', sans-serif;
     @apply bg-secondary-100 text-secondary-700;
   }
   a {

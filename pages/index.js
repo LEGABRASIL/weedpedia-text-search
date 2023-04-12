@@ -5,6 +5,10 @@ import Image from 'next/image';
 import Loading from '../components/Loading';
 import { ViewGridIcon } from '@heroicons/react/solid';
 import { SearchIcon } from '@heroicons/react/outline';
+import dynamic from 'next/dynamic'
+const WordCloud = dynamic(() => import('../components/WordCloud'), {
+  ssr: false,
+})
 
 export default function Home() {
 
@@ -34,7 +38,6 @@ export default function Home() {
     }
 
     setLoading(true);
-    console.log('loading', loading);
 
     router.push(`/search?term=${term}`);
 
@@ -53,7 +56,7 @@ export default function Home() {
 
       
       {/* Body */}
-        <form className="flex flex-col items-center w-4/5">
+        <form className="flex flex-col items-center w-4/5 z-10">
           <div
             className="logo-container"
           >
@@ -100,6 +103,8 @@ export default function Home() {
             </button>
           </div>
         </form>
+
+        <WordCloud />
     </div>
   )
 }
