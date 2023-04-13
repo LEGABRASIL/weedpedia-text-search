@@ -262,7 +262,7 @@ export default (req, res) => {
   // const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   normalizedKeyword = normalizedKeyword.toLowerCase()
-  console.log(`keyword=[${keyword}]--normalized=[${normalizedKeyword}]--tart=[${start}]--ipAddress=[${ipAddress}]`)
+  console.log(`keyword=[${keyword}]--normalized=[${normalizedKeyword}]--start=[${start}]--ipAddress=[${ipAddress}]`)
   if(!ipAddress || '127.0.0.1' != ipAddress) {
       //return res.status(400).json(`badrequest`)
   }
