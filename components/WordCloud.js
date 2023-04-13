@@ -12,11 +12,13 @@ class WordCloud extends React.Component {
       timer: {
         controller: null,
         value: 100,
-        acceleration: 1.1,
-        max: 1000
+        acceleration: 1.2,
+        max: 1000,
+        fade: 8000
       },
       sizes: [20, 24, 32, 36, 40, 48, 64, 80],
-      limit: 100,
+      angles: [],
+      limit: 1000,
 			count: 0
 		};
 
@@ -33,8 +35,11 @@ class WordCloud extends React.Component {
   build = () => {
     const text = this.getWord();
     const style = this.getStyle();
-    this.setCloud({ text, style });
-    console.log(text, style, this.state.count);
+    if (style==null) {
+      console.log('crowded', text);
+    }else{
+      this.setCloud({ text, style });
+    }
 
     if (this.state.timer.value<this.state.timer.max) this.state.timer.value *= this.state.timer.acceleration;
     
@@ -54,20 +59,47 @@ class WordCloud extends React.Component {
     return word;
   }
 
+  removeAngle = (angle) => {
+    const index = this.state.angles.indexOf(angle);
+    console.log('removing angle', angle, index);
+    this.state.angles.splice(index, 1);
+  };
+
   getPosition = () => {
-    const angle = Math.random()*Math.PI*2;
+    const getAngle = () => Math.random()*Math.PI*2;
+    const closeSpacing = (angles) => angles.some((a) => {
+      const close = a>angle-space && a<angle+space;
+      return close;
+    });
+    const space = 0.5;
+    let spaced = false;
+    let angle = null;
+    let i = 0;
+    while (!spaced&&i<100) {
+      i += 1;
+      angle = getAngle();
+      spaced = this.state.angles.length>0 ? !closeSpacing(this.state.angles) : true;
+    }
+    this.state.angles.push(angle);
     const radius = 40;
-    const x = (Math.cos(angle)*radius) + 50 + this.randomizer(0, 5, true);
-    const y = (Math.sin(angle)*radius) + 50 + this.randomizer(0, 5, true);
-    return { x, y }
+    const x = (Math.cos(angle)*radius) + 50 + this.randomizer(0, 2, true);
+    const y = (Math.sin(angle)*radius) + 50 + this.randomizer(0, 2, true);
+
+    setTimeout(this.removeAngle, this.state.timer.fade, angle);
+    
+    console.log('position', angle, x, y, i);
+    return i==100 ? null : { x, y };
   }
   getStyle = () => {
-    const { x, y } = this.getPosition();
+    const position = this.getPosition();
+    const crowded = position==null;
     const size = 20 //this.state.sizes[this.randomizer(0, this.state.sizes.length-1)];
-    return { 
-      left: `${x}%`, 
-      top: `${y}%`, 
-      fontSize: `${size}px`
+    const fade = this.state.timer.fade;
+    return crowded ? null : { 
+      left: `${position.x}%`, 
+      top: `${position.y}%`, 
+      fontSize: `${size}px`,
+      animationDuration: `${fade}ms`
     }
   }
 

@@ -8,7 +8,8 @@ import { SearchIcon } from '@heroicons/react/outline';
 import dynamic from 'next/dynamic'
 const WordCloud = dynamic(() => import('../components/WordCloud'), {
   ssr: false,
-})
+});
+import Typed from 'typed.js';
 
 export default function Home() {
 
@@ -16,10 +17,28 @@ export default function Home() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
+  const typer = useRef(null);
+  const words = ['Associações Rio de Janeiro', 'Licensed doctors', 'CBD axiety', 'Oil Products', 'London', 'Legalize', 'Prescription', 'Legislation California'];
+
   useEffect(() => {
     if (searchInputRef.current) {
       searchInputRef.current.focus();
     }
+    const typed = new Typed(typer.current, {
+      strings: words,
+      typeSpeed: 100,
+      backSpeed: 20,
+      startDelay: 1000,
+      backDelay: 1000,
+      shuffle: true,
+      loop: true,
+      showCursor: false
+    });
+
+    return () => {
+      // Destroy Typed instance during cleanup to stop animation
+      typed.destroy();
+    };
   }, []);
 
   const handleKey = (event) => {
@@ -62,12 +81,21 @@ export default function Home() {
           >
             <Image 
               src="/logo-weedpedia-color.svg" 
-              className="logo mb-12"
+              className="logo"
               layout="fill"
             />
           </div>
           <div 
-            className="flex bg-white w-full mt-12 max-sm:mt-8 transition-[box-shadow] duration-500 ease-in-out hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full border border-secondary-300 pl-6 py-3 items-center sm:max-w-xl lg:max-w-2xl"
+            className="typer-container mt-6 text-center tracking-wide font-serif text-lg sm:text-xl text-secondary-400"
+          >
+            Try: 
+            <span 
+              ref={typer}
+              className="typer text-secondary-500 ml-2"
+            />
+          </div>
+          <div 
+            className="flex bg-white w-full mt-8 max-sm:mt-8 transition-[box-shadow] duration-500 ease-in-out hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full border border-secondary-300 pl-6 py-3 items-center sm:max-w-xl lg:max-w-2xl"
           >
             <SearchIcon 
               className="h-5 -ml-2 inline-block mr-3 text-secondary-500"
@@ -104,7 +132,7 @@ export default function Home() {
           </div>
         </form>
 
-        <WordCloud />
+        {/* <WordCloud /> */}
     </div>
   )
 }
