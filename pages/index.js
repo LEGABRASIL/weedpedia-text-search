@@ -18,7 +18,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const typer = useRef(null);
-  const words = ['smokebuddies', 'com.br regras', 'veja.abril cânhamo', 'sechat maconha', 'gov.br', 'com.au cbd', 'ong.br', '.com and hemp', 'org.uk pain', 'vape cbd', 'alzheimer brasil'];
+  const words = ['smokebuddies', 'com.br regras', 'veja.abril cânhamo', 'sechat maconha', 'gov.br', 'com.au cbd', 'ong.br', '.com and hemp', 'org.uk pain', 'vape cbd', 'alzheimer brasil', 'twitter', 'instagram'];
 
   useEffect(() => {
     if (searchInputRef.current) {
