@@ -180,8 +180,8 @@ const queryBuilder = (searchQuery, st) => {
 
 const log = (request, response, searchQuery, timeInMillis, totalCount) => {
   if (0 == totalCount) {
+    console.log(`sending [${searchQuery}] to production with google`)
     sendToPROD(`https://www.google.com/search?q=${searchQuery}&oq=${searchQuery}`)
-    // todo improve
   }
   let ipAddress = request.headers['x-forwarded-for'] || request.socket.remoteAddress
   if(ipAddress.indexOf(',') > 0) {
